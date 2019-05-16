@@ -3,5 +3,5 @@
 <p> {{ getPostContent() }}</p>
 <button class="btn btn-success mma" (click)=addOneLove()>Like</button>
 <button class="btn btn-danger" (click)=removeOneLove()>Dislike</button>
-<button (click)=getLove()>love</button>
+<p>Créé le : {{ postCreatedAt |  date: 'd/M/yy' }} </p>
 </li>

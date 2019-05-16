@@ -10,6 +10,7 @@ export class PostComponent implements OnInit {
   @Input() postContent:string;
  @Input() postTitle:string;
  postLoveIts:number = 0;
+ postCreatedAt = new Date();
 
 
  
@@ -25,20 +26,19 @@ export class PostComponent implements OnInit {
     return this.postTitle;
   }
 
-  getLove() {
-    console.log(this.postLoveIts);
-  }
+  
 
   ngOnInit() {
   }
 
   addOneLove() {
-    console.log('hello')
     this.postLoveIts = this.postLoveIts + 1;
+    console.log(this.postLoveIts)
   }
 
   removeOneLove() {
     this.postLoveIts = this.postLoveIts - 1;
+    console.log(this.postLoveIts)
   }
 
 
