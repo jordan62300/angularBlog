@@ -1,17 +1,17 @@
 import { Component,Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  selector: 'app-post-list-item',
+  templateUrl: './post-list-item.component.html',
+  styleUrls: ['./post-list-item.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostListItemComponent implements OnInit {
 
   @Input() postContent:string;
  @Input() postTitle:string;
  postLoveIts:number = 0;
  postCreatedAt = new Date();
-
+  
 
  
 
@@ -40,8 +40,4 @@ export class PostComponent implements OnInit {
     this.postLoveIts = this.postLoveIts - 1;
     console.log(this.postLoveIts)
   }
-
-
 }
-
-
