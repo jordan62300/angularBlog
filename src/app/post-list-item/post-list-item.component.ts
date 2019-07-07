@@ -1,4 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
+import { Post } from '../models/posts.models';
+import { PostService } from '../services/post.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-list-item',
@@ -7,37 +10,43 @@ import { Component,Input, OnInit } from '@angular/core';
 })
 export class PostListItemComponent implements OnInit {
 
-  @Input() postContent:string;
- @Input() postTitle:string;
- postLoveIts:number = 0;
- postCreatedAt = new Date();
+  post: Post;
+  isDeleted = false;
+  index: number = this.route.snapshot.params['id'];
   
 
  
 
-  constructor() {
+  constructor(private postService: PostService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
-  
-  getPostContent() {
-    return this.postContent;
-  }
-
-  getPostTitle() {
-    return this.postTitle;
-  }
-
-  
+ 
 
   ngOnInit() {
+    this.post = new Post('', '','',0);
+    const id = this.route.snapshot.params['id'];
+    this.postService.getSinglePost(+id).then(
+      (post:Post) => {
+        this.post = post
+        
+
+  }
+    )
+ 
+}
+
+  onBack() {
+    this.router.navigate(['/posts'])
   }
 
-  addOneLove() {
-    this.postLoveIts = this.postLoveIts + 1;
-    console.log(this.postLoveIts)
+  onDeletePost(post: Post) {
+    this.postService.removePost(post);
+    this.router.navigate(['/posts'])
+    const deleted = true
+    this.isDeleted = deleted
   }
 
-  removeOneLove() {
-    this.postLoveIts = this.postLoveIts - 1;
-    console.log(this.postLoveIts)
-  }
+  
+
 }

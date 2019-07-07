@@ -1,3 +1,30 @@
-<app-post-list-item *ngFor="let post of posts"
-                            [postTitle]="post.title"
-                            [postContent]="post.content"></app-post-list-item>
+<div class="row">
+    <div class="col-xs-12">
+      <h2>Vos Post</h2>
+      <p class="text-center text-danger" *ngIf="isDeleted">Post deleted</p>
+      <div class="list-group">
+        <button
+      
+          *ngFor="let post of posts; let i = index"
+          (click)="onViewPost(i)"
+          [ngClass]="{'list-group-item': true,
+          'list-group-item-success': post.loveIts > 0,
+          'list-group-item-danger': post.loveIts < 0
+          }"
+          >
+          <h3 class="list-group-item-heading">
+            {{ post.title }}
+            <button class="btn btn-danger pull-right" (click)="onDeletePost(post)">
+              Delete Post
+            </button>
+          </h3>
+          <p class="m-4">Created at : {{ post.created_at |  date: 'd/M/yy H:mm ' }} </p>
+          <p class="list-group-item-text">{{ post.content }}</p>
+         
+          <button class="btn btn-success mt-4" (click)="onLoveIt(i)">Like</button>
+          <button class="btn btn-danger mt-4" (click)="onDontLoveIt(i)">Dislike</button>
+        </button>
+      </div>
+      <button class="btn btn-primary" (click)="onNewPost()">Nouveau Post</button>
+    </div>
+  </div>

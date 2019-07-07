@@ -1,10 +1,13 @@
-<li [ngClass]="{'list-group-item': true,
-'list-group-item-success': postLoveIts > 0,
-'list-group-item-danger': postLoveIts < 0
-}">
-<h1>{{ getPostTitle() }}</h1>
-<p> {{ getPostContent() }}</p>
-<button class="btn btn-success mma" (click)=addOneLove()>Like</button>
-<button class="btn btn-danger" (click)=removeOneLove()>Dislike</button>
-<p>Créé le : {{ postCreatedAt |  date: 'd/M/yy H:mm ' }} </p>
-</li>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="list-group border border-dark bg-success">
+      <h1 class="text-center">{{ post.title }}</h1>
+      <h3 class="text-center">{{ post.content }}</h3>
+      <button class="btn btn-danger pull-right" (click)="onDeletePost(post)">
+        Delete Post
+      </button>
+         
+      <button class="btn btn-default" (click)="onBack()">Retour</button>
+    </div>
+    </div>
+  </div>
